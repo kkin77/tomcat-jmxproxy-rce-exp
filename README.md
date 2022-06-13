@@ -8,11 +8,17 @@
 
 Introduce: Apache Tomcat JMXProxy RCE
 
-I reported this to **Apache Tomcat** as soon as I found the vulnerability, But **Apache Tomcat Security Team** does not consider this a security vulnerability, so it is open. Vulnerability are difficult to exploit directly and require high preconditions, but the third-party JMX management platform can bypass basic authentication
+I reported this to **Apache Tomcat** as soon as I found the vulnerability, But **Apache Tomcat Security Team** does not consider this a security vulnerability, so it is open. 
+
+The vulnerability is based on `JMXProxyServlet` in `Tomcat` and similar to **Spring4Shell**.
+
+The `JMXProxyServlet` in `Tomcat` provides JMX monitoring related functions. However, basic authentication is required to access it, so it is difficult to exploit it in general.
+
+Vulnerability are difficult to exploit directly and require high preconditions, but the third-party JMX management platform can bypass basic authentication, then RCE easily.
 
 Affected:
 - Apache Tomcat All Versions
-- JDK All Versions
+- with JDK All Versions
 - SpringBoot FarJar is not affected
 
 ![](img/attack.png)
@@ -28,7 +34,7 @@ Exploit Condition 2
 
 Exploit Condition 3
 - target must open jmxproxy
-- there is a csrf/xss vulnerability
+- based on csrf vulnerability
 
 ## Exploit-1
 
